@@ -18,4 +18,16 @@ class ProjectController extends Controller
         ]);
 
     }
+    
+
+    public function show($id) {
+
+        $project = Project::find($id);
+
+        return response()->json([
+            'success'=> true,
+            'result'=> $project,
+        ]);
+
+    }
 }
