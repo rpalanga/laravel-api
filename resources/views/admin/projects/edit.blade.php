@@ -6,7 +6,7 @@
 
     <div class="container p-3">
 
-<form action="{{route('admin.projects.update', $project->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('admin.projects.update', $project->slug)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 

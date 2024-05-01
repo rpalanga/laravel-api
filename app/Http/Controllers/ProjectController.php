@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
+//importo la libreria per gestire le stringhe
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -49,6 +51,8 @@ class ProjectController extends Controller
 
         $newProject->fill($request->all());
 
+        $newProject->slug = Str::slug($newProject->name);
+
         $newProject->save(); 
         
         $newProject->technologies()->attach($request->technologies);
@@ -61,6 +65,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        /* $slug_name = Str::slug($project->name, '-'); */
         // dd($project->technologies());
         // $project= Project::find($project->id);
         return view('admin.projects.show' , compact('project'));
@@ -93,6 +98,8 @@ class ProjectController extends Controller
         }
         
         $project->fill($request->all());
+
+        $project->slug = Str::slug($request->name);
 
         $project->save();
 
