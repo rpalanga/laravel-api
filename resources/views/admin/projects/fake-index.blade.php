@@ -17,7 +17,7 @@
         <!-- <p class="card-text">{{$project->tech}}</p> -->
         <p class="card-text">{{$project->date_release}}</p>
 
-        <a href="{{route('admin.projects.show', $project->id)}}" class="btn btn-primary">Visualizza</a>
+        <a href="{{route('admin.projects.show', $project->slug)}}" class="btn btn-primary">Visualizza</a>
       </div>
     </div>
     @endforeach
