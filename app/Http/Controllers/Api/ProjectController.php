@@ -18,27 +18,6 @@ class ProjectController extends Controller
         ]);
 
     }
+
     
-
-    public function show($slug) {
-
-        /* $project = Project::find($id); */
-
-        $project = Project::with(['type','technologies'])->where('slug',$slug)->first();
-
-        //$project = Project::with(['type','technologies'])->find($id);
-        if($project) {
-
-            return response()->json([
-                'success'=> true,
-                'project'=> $project
-            ]);
-        } else {
-            return response()->json([
-                'success'=> false,
-                'error'=> 'not-found'
-            ]);
-        }
-
-    }
 }
