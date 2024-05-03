@@ -5,7 +5,7 @@
     <h1 class=" display-2 ">Visualizza il Progetto</h1>
 
     <div class="card col-12 my-4" style="width: 500px;">
-      <img src="{{asset('storage/' . $project->image)}}" class="card-img-top w-100" alt="...">
+      <img src="{{asset('storage/' . $project->image)}}" class="card-img-top w-100" alt="{{$project->name}}">
       <div class="card-body text-center">
         <h5 class="card-title text-warning ">{{$project->name}}</h5>
         <p class="card-text">{{$project->description}}</p>

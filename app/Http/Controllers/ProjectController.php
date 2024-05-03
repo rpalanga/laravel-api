@@ -87,8 +87,6 @@ class ProjectController extends Controller
      */
     public function update(StoreProjectRequest $request, Project $project)
     {
-        $request->validated();
-
         if ($request->hasFile('image')) {
 
             $path = Storage::disk('public')->put('my_image', $request->image);
@@ -97,15 +95,18 @@ class ProjectController extends Controller
 
         }
         
-        $project->fill($request->all());
+        if( $request->name != $project->name ) {
+            $project->slug = Str::slug($request->name);
+        }
+        
+        $project->update($request->all());
 
-        $project->slug = Str::slug($request->name);
 
         $project->save();
 
         $project->technologies()->sync($request->technologies);
         
-        return redirect()->route('admin.projects.show', $project->id);
+        return redirect()->route('admin.projects.show', $project->slug);
 
     }
 
