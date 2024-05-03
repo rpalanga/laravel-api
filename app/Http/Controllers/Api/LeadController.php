@@ -39,7 +39,7 @@ class LeadController extends Controller
         $newLead->fillable($request->all());
         $newLead->save();
 
-        Mail::to('lucafagiolini@live.it')->send(new NewContact($newLead));
+        Mail::to('gianmarco.pimentel1997@hotmail.com')->send(new NewContact($newLead));
 
 
         //la store deve restituirmi un json con succes = true
