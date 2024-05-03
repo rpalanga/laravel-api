@@ -17,14 +17,14 @@ class LeadController extends Controller
     // sto memorizzando il nuovo contato nel db
     public function store(Request $request) {
 
-        $validator = Validator::make(request()->all(), [
+        $validator = Validator::make($request->all(), [
             "name"=> "required",
-            "adress"=> "required|email",
+            "address"=> "required|email",
             "message"=> "required",
         ], [
             "name"=> "Hai dimenticato di  inserire il tuo nome",
-            "adress.required"=> "Hai dimenticato di inserire la tua Mail", 
-            "adress.email"=> "La Mail che hai inserito non è corretta",
+            "address.required"=> "Hai dimenticato di inserire la tua Mail", 
+            "address.email"=> "La Mail che hai inserito non è corretta",
             "message.required"=> "Hai dimenticato di inserire il messaggio",    
         ]);
 
@@ -36,10 +36,10 @@ class LeadController extends Controller
         }
 
         $newLead = new Lead();
-        $newLead->fillable($request->all());
+        $newLead->fill($request->all());
         $newLead->save();
 
-        Mail::to('gianmarco.pimentel1997@hotmail.com')->send(new NewContact($newLead));
+        Mail::to('femaleg107@agafx.com')->send(new NewContact($newLead));
 
 
         //la store deve restituirmi un json con succes = true
